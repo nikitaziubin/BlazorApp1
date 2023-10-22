@@ -24,7 +24,18 @@ builder.Services.AddAuthentication()
 			{
 				googleOptions.ClientId = "797394826698-vc315f8puhi1lb7l0iovglrkjahfh5h6.apps.googleusercontent.com";
 				googleOptions.ClientSecret = "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";
-			});
+			})
+	.AddOpenIdConnect("Microsoft", "Login with Microsoft", options =>
+	 {
+		 options.ClientId = "6ccb26cd-4ca6-459c-a14b-3ba16c89d111";
+		 options.ClientSecret = "aYj8Q~jrLubBT7wN3ewIV3R8OVPb2~-P8KGcGbK3";
+		 options.Authority = "https://login.microsoftonline.com/b767a72e-40b6-476d-b144-248da07c71b4";
+		 options.CallbackPath = "/";
+		 options.ResponseType = "code";
+		 options.SaveTokens = true;
+		 options.Scope.Add("openid");
+		 options.Scope.Add("profile");
+	 });
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
